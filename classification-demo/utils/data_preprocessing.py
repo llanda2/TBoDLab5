@@ -2,16 +2,19 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 
-def load_and_preprocess_data(csv_path):
+import os
+
+
+def load_and_preprocess_data(csv_path, csv_filename=None):
     # Load Titanic dataset
-    df = pd.read_csv("data/titanic.csv")
+    df = pd.read_csv('/Users/laurenlanda/PycharmProjects/TBoDLab5/data/titanic.csv')
 
     # Select features and target variable
     features = df[['Age', 'Fare']]
     target = df['Survived']
 
     # Handle missing values by filling with median
-    features['Age'].fillna(features['Age'].median(), inplace=True)
+    features['Age'] = features['Age'].fillna(features['Age'].median())
 
     # Scale features for better model performance
     scaler = StandardScaler()
