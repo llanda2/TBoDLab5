@@ -9,7 +9,7 @@ from utils.data_preprocessing import load_and_preprocess_data
 from utils.model_utils import train_svm_model, evaluate_model, compute_roc
 import dash
 import dash_bootstrap_components as dbc
-app = dash.Dash(external_stylesheets=[dbc.themes.SUPERHERO])
+app = dash.Dash(external_stylesheets=[dbc.themes.LUMEN])
 
 # Define default parameters
 DEFAULT_KERNEL = 'rbf'
@@ -174,7 +174,7 @@ def update_outputs(kernel, C, gamma):
     )
 
     # Prepare confusion matrix table
-    cm_df = pd.DataFrame(cm, index=['Actual: 0', 'Actual: 1'], columns=['Predicted: 0', 'Predicted: 1'])
+    cm_df = pd.DataFrame(cm, index=['Actual: False', 'Actual: True'], columns=['Predicted: False', 'Predicted: True'])
     confusion_matrix_table = html.Table([
         html.Thead(
             html.Tr([html.Th()] + [html.Th(col) for col in cm_df.columns])
